@@ -90,6 +90,109 @@ private:
 
         return result;
     }
+    /////
+private:
+    // 标准化表达式节点
+    ExpressionNode* standardizeNode(ExpressionNode* node) const {
+        if (!node) return nullptr;
+
+        if (node->type == NUMBER) {
+            return new ExpressionNode(node->value);
+        }
+
+        if (node->op == '+') {
+            vector<ExpressionNode*> operands;
+            collectAddOperands(node, operands);
+
+            sort(operands.begin(), operands.end(), [this](ExpressionNode* a, ExpressionNode* b) {
+                return this->nodeToString(a) < this->nodeToString(b);
+                });
+
+            ExpressionNode* root = operands[0];
+            for (size_t i = 1; i < operands.size(); ++i) {
+                root = new ExpressionNode('+', root, operands[i]);
+            }
+            return root;
+        }
+        else if (node->op == '*') {
+            vector<ExpressionNode*> operands;
+            collectMulOperands(node, operands);
+
+            sort(operands.begin(), operands.end(), [this](ExpressionNode* a, ExpressionNode* b) {
+                return this->nodeToString(a) < this->nodeToString(b);
+                });
+
+            ExpressionNode* root = operands[0];
+            for (size_t i = 1; i < operands.size(); ++i) {
+                root = new ExpressionNode('*', root, operands[i]);
+            }
+            return root;
+        }
+        else {
+            ExpressionNode* left = standardizeNode(node->left);
+            ExpressionNode* right = standardizeNode(node->right);
+            return new ExpressionNode(node->op, left, right);
+        }
+    }
+
+    // 收集加法操作数
+    void collectAddOperands(ExpressionNode* node, vector<ExpressionNode*>& operands) const {
+        if (!node) return;
+
+        if (node->type == NUMBER) {
+            operands.push_back(new ExpressionNode(node->value));
+            return;
+        }
+
+        if (node->op == '+') {
+            collectAddOperands(node->left, operands);
+            collectAddOperands(node->right, operands);
+        }
+        else {
+            ExpressionNode* stdNode = standardizeNode(node);
+            operands.push_back(stdNode);
+        }
+    }
+
+    // 收集乘法操作数
+    void collectMulOperands(ExpressionNode* node, vector<ExpressionNode*>& operands) const {
+        if (!node) return;
+
+        if (node->type == NUMBER) {
+            operands.push_back(new ExpressionNode(node->value));
+            return;
+        }
+
+        if (node->op == '*') {
+            collectMulOperands(node->left, operands);
+            collectMulOperands(node->right, operands);
+        }
+        else {
+            ExpressionNode* stdNode = standardizeNode(node);
+            operands.push_back(stdNode);
+        }
+    }
+
+    // 节点转字符串（用于排序）
+    string nodeToString(ExpressionNode* node) const {
+        if (!node) return "";
+
+        if (node->type == NUMBER) {
+            return node->value.toString();
+        }
+
+        string leftStr = nodeToString(node->left);
+        string rightStr = nodeToString(node->right);
+
+        if (node->op == '+' || node->op == '*') {
+            return "(" + min(leftStr, rightStr) + string(1, node->op) + max(leftStr, rightStr) + ")";
+        }
+        else {
+            return "(" + leftStr + string(1, node->op) + rightStr + ")";
+        }
+    }
+
+    /////
 
 public:
     Expression() : root(nullptr) {}
@@ -181,4 +284,10 @@ public:
 
         return true;
     }
+    // 获取标准化表达式
+    Expression standardize() const {
+        ExpressionNode* stdRoot = standardizeNode(root);
+        return Expression(stdRoot);
+    }
+
 };

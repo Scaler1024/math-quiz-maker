@@ -11,7 +11,6 @@
 #include <ctime>
 #include <cmath>
 #include <functional>
-
 using namespace std;
 
 // ·ÖÊýÀà

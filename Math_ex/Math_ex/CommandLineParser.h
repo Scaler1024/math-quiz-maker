@@ -11,10 +11,9 @@
 #include <ctime>
 #include <cmath>
 #include <functional>
-
 #include <unordered_map>
 
-
+//命令行解析
 class CommandLineParser {
 private:
     unordered_map<string, string> arguments;
@@ -24,13 +23,13 @@ public:
         for (int i = 1; i < argc; i++) {
             string arg = argv[i];
 
-            if (arg == "-n" && i + 1 < argc) {
+            if (arg == "-n" && i + 1 < argc) {//生成算式数目
                 arguments["-n"] = argv[++i];
             }
             else if (arg == "-r" && i + 1 < argc) {
                 arguments["-r"] = argv[++i];
             }
-            else if (arg == "-e" && i + 1 < argc) {
+            else if (arg == "-e" && i + 1 < argc) {//核对答案
                 arguments["-e"] = argv[++i];
             }
             else if (arg == "-a" && i + 1 < argc) {

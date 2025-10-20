@@ -16,9 +16,36 @@
 #include"DuplicateChecker.h"
 #include"FileProcessor.h"
 #include"CommandLineParser.h"
+#include <windows.h>
+#include <shlwapi.h>  // 用于 PathRemoveFileSpecA 函数
+#include <string>
+
 using namespace std;
+// 链接 shlwapi 库（VS 中可直接使用 #pragma，其他编译器需手动链接）
+#pragma comment(lib, "shlwapi.lib")
 
+// 获取可执行文件所在目录
+string getExecutableDirectory() {
+    char exePath[MAX_PATH];
+    // 获取当前可执行文件完整路径
+    GetModuleFileNameA(NULL, exePath, MAX_PATH);
+    // 移除文件名，保留目录路径（例如从 "C:\test\app.exe" 得到 "C:\test"）
+    PathRemoveFileSpecA(exePath);
+    // 转换为字符串返回
+    return string(exePath);
+}
 
+// 拼接目录和文件名（处理路径分隔符）
+string combinePath(const string& dir, const string& filename) {
+    if (dir.empty()) return filename;
+    // 检查目录末尾是否已有分隔符，没有则添加
+    char lastChar = dir.back();
+    if (lastChar != '\\' && lastChar != '/') {
+        return dir + "\\" + filename;  //Windows 下优先使用\
+    
+    }
+        return dir + filename;
+}
 
 
 
@@ -76,19 +103,29 @@ int main(int argc, char* argv[]) {
         }
 
         // 保存题目和答案
-        FileProcessor::saveExercises(exercises, "Exercises.txt");//改一下
-        FileProcessor::saveAnswers(answers, "Answers.txt");
 
-        cout << "已生成 " << exercises.size() << " 道题目到 "<< argv[0] << "\Exercises.txt" << endl;
-        cout << "答案已保存到 " << argv[0] << "\Answers.txt" << endl;
+        //获取可执行文件目录
+        string execDir = getExecutableDirectory();
+        // 拼接路径
+        string exercisesPath = combinePath(execDir, "Exercises.txt");
+        string answersPath = combinePath(execDir, "Answers.txt");
+        FileProcessor::saveExercises(exercises,exercisesPath);
+        FileProcessor::saveAnswers(answers, answersPath);
+
+        cout << "已生成 " << exercises.size() << " 道题目到" << exercisesPath << endl;
+        cout << "答案已保存到" << answersPath << endl;
     }
     // 批改答案模式
     else if (parser.has("-e") && parser.has("-a")) {
         string exerciseFile = parser.get("-e");
         string answerFile = parser.get("-a");
 
-        FileProcessor::gradeAnswers(exerciseFile, answerFile, "Grade.txt");
-        cout << "批改结果已保存到 Grade.txt" << endl;
+
+    // 获取可执行文件目录
+    string execDir = getExecutableDirectory();
+    string gradePath = combinePath(execDir, "Grade.txt");
+    FileProcessor::gradeAnswers(exerciseFile, answerFile, gradePath);
+        cout << "评分结果已保存到 " << gradePath << endl;
     }
     else {
         cout << "错误：参数不完整" << endl;
