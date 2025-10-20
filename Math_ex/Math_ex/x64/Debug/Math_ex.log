@@ -1,0 +1,5 @@
+﻿  main.cpp
+C:\Users\feng-peng\Desktop\c_code\Math_ex\Math_ex\main.cpp(369,19): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+  Math_ex.vcxproj -> C:\Users\feng-peng\Desktop\c_code\Math_ex\x64\Debug\Math_ex.exe
+  'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
+  或批处理文件。
