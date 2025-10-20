@@ -1,5 +1,12 @@
 ﻿  main.cpp
-C:\Users\feng-peng\Desktop\c_code\Math_ex\Math_ex\main.cpp(369,19): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+C:\Users\feng-peng\Desktop\c_code\Math_ex\Math_ex\ExpressionGenerator.h(67,19): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+C:\Users\feng-peng\Desktop\c_code\Math_ex\Math_ex\FileProcessor.h(60,19): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+C:\Users\feng-peng\Desktop\c_code\Math_ex\Math_ex\main.cpp(82,83): warning C4129: “E”: 不可识别的字符转义序列
+C:\Users\feng-peng\Desktop\c_code\Math_ex\Math_ex\main.cpp(83,53): warning C4129: “A”: 不可识别的字符转义序列
   Math_ex.vcxproj -> C:\Users\feng-peng\Desktop\c_code\Math_ex\x64\Debug\Math_ex.exe
   'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
   或批处理文件。

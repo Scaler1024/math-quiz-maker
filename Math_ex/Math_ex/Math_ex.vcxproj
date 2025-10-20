@@ -129,6 +129,14 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CommandLineParser.h" />
+    <ClInclude Include="DuplicateChecker.h" />
+    <ClInclude Include="Expression.h" />
+    <ClInclude Include="ExpressionGenerator.h" />
+    <ClInclude Include="FileProcessor.h" />
+    <ClInclude Include="Fraction.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
