@@ -1,0 +1,83 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.39.33522.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/feng-peng/desktop/c_code/math_ex/math_ex/main.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "9eed7e67cff4b44d10eb53eed5d8063d66ef5135f7a24656af86d6bc721711b2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/feng-peng/desktop/c_code/math_ex/math_ex/fraction.h"
+          },
+          "hashes": {
+            "sha-256": "1b5627241e654061c97a4b1ca1d37be6991a8c53c255441d7e455779c65a649a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/feng-peng/desktop/c_code/math_ex/math_ex/expression.h"
+          },
+          "hashes": {
+            "sha-256": "36da472f3f2826267900dfc67f7d7c58c5fbfb1cc9dca9bbc6c7142308e3cf8a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/feng-peng/desktop/c_code/math_ex/math_ex/expressiongenerator.h"
+          },
+          "hashes": {
+            "sha-256": "d7a8eef263a7084cb372a829c789bbf4c6da474aba975a5d122582c9ec8894c1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/feng-peng/desktop/c_code/math_ex/math_ex/duplicatechecker.h"
+          },
+          "hashes": {
+            "sha-256": "99d90ba6a30a958d97ed02b58c8364ffd01ed3e6c48e56bcd802dbc90410cf3f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/feng-peng/desktop/c_code/math_ex/math_ex/fileprocessor.h"
+          },
+          "hashes": {
+            "sha-256": "50315e91b869f1e67350fb751057f5ccbb8076f0caa22a2f69a5a77420735fb4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/feng-peng/desktop/c_code/math_ex/math_ex/commandlineparser.h"
+          },
+          "hashes": {
+            "sha-256": "9a49dc33cca2996fb46717c61ea9ec3e4dd5244586898b916dd46f66c770413c"
+          }
+        }
+      ]
+    }
+  ]
+}

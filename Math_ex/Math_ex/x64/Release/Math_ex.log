@@ -1,0 +1,14 @@
+﻿  main.cpp
+C:\Users\feng-peng\Desktop\c_code\Math_ex\Math_ex\ExpressionGenerator.h(58,19): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+C:\Users\feng-peng\Desktop\c_code\Math_ex\Math_ex\FileProcessor.h(60,19): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+  正在生成代码
+  Previous IPDB not found, fall back to full compilation.
+  All 963 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  Math_ex.vcxproj -> C:\Users\feng-peng\Desktop\c_code\Math_ex\x64\Release\Math_ex.exe
+  'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
+  或批处理文件。

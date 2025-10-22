@@ -1,47 +1,3 @@
-//#pragma once
-//#include <iostream>
-//#include <string>
-//#include <sstream>
-//#include <vector>
-//#include <set>
-//#include <map>
-//#include <fstream>
-//#include <algorithm>
-//#include <cstdlib>
-//#include <ctime>
-//#include <cmath>
-//#include <functional>
-////表达式标准化还未完善
-//using namespace std;
-//
-//class DuplicateChecker {
-//private:
-//    set<string> generatedExpressions;
-//
-//    // 表达式标准化：排序可交换的操作数
-//    string standardizeExpression(const Expression& expr) {
-//        // 实现表达式的标准化表示
-//        // 将可交换的操作符（+和×）的操作数按字典序排序
-//        // 这需要遍历表达式树并重新排列
-//
-//        return expr.toString();
-//    }
-//
-//public:
-//    bool isDuplicate(const Expression& expr) {
-//        string standardized = standardizeExpression(expr);
-//        if (generatedExpressions.find(standardized) != generatedExpressions.end()) {
-//            return true;
-//        }
-//        generatedExpressions.insert(standardized);
-//        return false;
-//    }
-//
-//    void clear() {
-//        generatedExpressions.clear();
-//    }
-//};
-
 #pragma once
 #include <iostream>
 #include <string>
@@ -52,17 +8,23 @@ using namespace std;
 
 class DuplicateChecker {
 private:
+    // 存储已生成的标准化表达式字符串，用于快速查重
     set<string> generatedExpressions;
 
     // 标准化表达式为唯一字符串表示
     string standardizeExpression(const Expression& expr) {
+        
+        // 调用Expression类的标准化方法获取规范化表达式
         Expression normalized = expr.standardize();
+        //将标准话的字符串转换为字符串
         return normalized.toString();
     }
 
 public:
     bool isDuplicate(const Expression& expr) {
+        //先将表达式转换为标准字符串
         string standardized = standardizeExpression(expr);
+        //检查该字符串是否已经在集合中存在
         if (generatedExpressions.find(standardized) != generatedExpressions.end()) {
             return true;
         }
@@ -71,6 +33,6 @@ public:
     }
 
     void clear() {
-        generatedExpressions.clear();
+        generatedExpressions.clear();//清空已经储存的所有表达式记录
     }
 };
